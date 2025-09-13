@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXIF Data Remover</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📸 EXIF Data Remover</h1>
+            <p>Remove metadata from your images while preserving quality</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="drop-zone" id="dropZone">
+                    <div class="drop-zone-content">
+                        <div class="upload-icon">📁</div>
+                        <h3>Drop your image here</h3>
+                        <p>or <button type="button" class="browse-btn" id="browseBtn">browse files</button></p>
+                        <small>Supports: JPG, PNG, TIFF, BMP (max 50MB)</small>
+                    </div>
+                    <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.tiff,.bmp" hidden>
+                </div>
+            </div>
+
+            <div class="progress-section" id="progressSection" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p id="progressText">Processing...</p>
+            </div>
+
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-card">
+                    <div class="result-header">
+                        <h3>✅ Processing Complete</h3>
+                    </div>
+                    
+                    <div class="file-info">
+                        <div class="info-row">
+                            <span class="label">Original File:</span>
+                            <span id="originalName">-</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Original Size:</span>
+                            <span id="originalSize">-</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Processed Size:</span>
+                            <span id="processedSize">-</span>
+                        </div>
+                    </div>
+
+                    <div class="exif-info" id="exifInfo">
+                        <h4>📋 EXIF Data Found & Removed:</h4>
+                        <div class="exif-list" id="exifList"></div>
+                    </div>
+
+                    <div class="actions">
+                        <button class="download-btn" id="downloadBtn">
+                            <span>💾 Download Clean Image</span>
+                        </button>
+                        <button class="reset-btn" id="resetBtn">
+                            <span>🔄 Process Another</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-section" id="errorSection" style="display: none;">
+                <div class="error-card">
+                    <h3>❌ Error</h3>
+                    <p id="errorMessage">Something went wrong</p>
+                    <button class="reset-btn" onclick="resetApp()">Try Again</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Your files are processed locally and automatically deleted after download.</p>
+            <p>Future support planned: PDF metadata removal</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
