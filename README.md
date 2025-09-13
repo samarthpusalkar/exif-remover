@@ -87,7 +87,7 @@ exif-remover/
 The application can be configured using environment variables:
 
 ```bash
-# Port number (default: 5000)
+# Port number (default: 4001)
 export PORT=8080
 
 # Host address (default: 0.0.0.0)
@@ -137,7 +137,7 @@ For production use, consider using a WSGI server:
 
 ```bash
 python -m pip install gunicorn
-gunicorn -w 4 -b 0.0.0.0:5000 app:app
+gunicorn -w 4 -b 0.0.0.0:4001 app:app
 ```
 
 ## 📊 Technical Details
