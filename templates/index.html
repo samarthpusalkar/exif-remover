@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>📸 EXIF Data Remover</h1>
+            <h1>🛡️ EXIF Data Remover</h1>
             <p>Remove metadata from your images while preserving quality</p>
         </header>
 
@@ -20,7 +20,7 @@
                         <div class="upload-icon">📁</div>
                         <h3>Drop your image here</h3>
                         <p>or <button type="button" class="browse-btn" id="browseBtn">browse files</button></p>
-                        <small>Supports: JPG, PNG, TIFF, BMP (max 50MB)</small>
+                        <small>Supports: JPG, PNG, TIFF, BMP (max {{ config.max_file_size_mb }}MB)</small>
                     </div>
                     <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.tiff,.bmp" hidden>
                 </div>
@@ -80,11 +80,19 @@
         </main>
 
         <footer>
-            <p>Your files are processed locally and automatically deleted after download.</p>
-            <p>Future support planned: PDF metadata removal</p>
+            <p>🔒 Your files are processed locally and automatically deleted after download.</p>
+            <p>🚀 Future support planned: PDF metadata removal</p>
+            <p>📊 Max file size: {{ config.max_file_size_mb }}MB</p>
         </footer>
     </div>
 
+    <script>
+        // Pass configuration to JavaScript
+        window.APP_CONFIG = {
+            maxFileSize: {{ config.max_file_size }},
+            maxFileSizeMB: {{ config.max_file_size_mb }}
+        };
+    </script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
